@@ -47,5 +47,6 @@ void util_proc_dev_free_entry(struct util_proc_dev_entry *entry);
 int util_proc_mnt_get_entry(const char *file_name, const char *spec,
 			    struct util_proc_mnt_entry *entry);
 void util_proc_mnt_free_entry(struct util_proc_mnt_entry *entry);
+int util_proc_is_mountpoint(const char *dir);
 
 #endif /* LIB_UTIL_PROC_H */

@@ -118,6 +118,11 @@ Use the specified <CONFIG FILE>. If none is supplied, the environment
 variable ZIPLCONF is evaluated if set, otherwise /etc/zipl.conf is used.
 
 .TP
+.BR "\-b <BLS DIRECTORY>" " or " "\-\-blsdir=<BLS DIRECTORY>"
+Use the specified <BLS DIRECTORY> to parse BootLoaderSpec config files.
+If none is supplied, the /boot/loader/entries directory is used.
+
+.TP
 .BR "\-t <TARGET DIRECTORY>" " or " "\-\-target=<TARGET DIRECTORY>"
 Use the specified <TARGET DIRECTORY>. 
 .B zipl

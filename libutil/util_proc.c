@@ -471,3 +471,33 @@ out_free:
 	free_file_buffer(&file);
 	return rc;
 }
+
+/*
+ * Check whether a directory is a mount point or not. If it's a mount point
+ * then it returns 1 and 0 otherwise. On error it returns a negative number.
+ */
+int util_proc_is_mountpoint(const char *dir)
+{
+	struct util_proc_mnt_entry entry;
+	struct file_buffer file;
+	int rc;
+
+	rc = get_file_buffer(&file, "/proc/mounts");
+	if (rc)
+		return rc;
+	rc = -1;
+	while (!eof(&file)) {
+		rc = scan_mnt_entry(&file, &entry);
+		if (rc)
+			goto out_free;
+		if (!strcmp(entry.file, dir)) {
+			rc = 1;
+			goto out_free;
+		}
+		util_proc_mnt_free_entry(&entry);
+	}
+	rc = 0;
+out_free:
+	free_file_buffer(&file);
+	return rc;
+}
